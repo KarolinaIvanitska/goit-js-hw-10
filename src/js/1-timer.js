@@ -1,1 +1,13 @@
-console.log('time');
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
+const input = document.querySelector('input#datetime-picker');
+const display = document.querySelector('.timer');
+
+input.addEventListener('input', onInput);
+
+function onInput(e) {
+  console.log(e.target);
+}
