@@ -65,10 +65,12 @@
 #datetime-picker:active {
   border: 1px solid #4e75ff;
 }
+
 #datetime-picker:disabled {
   background: #fafafa;
 }
-button {
+
+.button-start {
   color: #989898;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -86,6 +88,14 @@ button {
   flex-direction: row;
 
   border-radius: 8px;
-  background: #cfcfcf;
   border-style: none;
+  background-color: #4e75ff;
+}
+
+.button-start:hover {
+  background-color: #6c8cff;
+}
+
+.button-start:disabled {
+  background-color: #cfcfcf;
 }

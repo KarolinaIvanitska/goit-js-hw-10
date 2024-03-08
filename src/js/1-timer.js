@@ -11,18 +11,54 @@ startBtn.addEventListener('click', onClick);
 
 let userDate;
 
-function onClick(e) {
+function onClick() {
+  startBtn.disabled = true;
+  input.disabled = true;
+
   userDate = new Date(input.value).getTime();
   const intervalId = setInterval(() => {
     const currentDate = Date.now();
     const diff = userDate - currentDate;
+    if (diff <= 0) {
+      clearInterval(intervalId);
+      startBtn.disabled = false;
+
+      return;
+    }
     const { days, hours, minutes, seconds } = convertMs(diff);
     addLeadingZero(days, hours, minutes, seconds);
-    if (diff <= 1000) {
-      clearInterval(intervalId);
-    }
   }, 1000);
 }
+
+let userSelectedDate;
+
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+
+  onClose(selectedDates) {
+    const selectedDate = selectedDates[0];
+
+    if (selectedDate < options.defaultDate) {
+      iziToast.error({
+        title: 'Error',
+        message: 'Please choose a date in the future',
+        position: 'topRight',
+        timeout: 3000,
+      });
+
+      startBtn.disabled = true;
+      startBtn.classList.add('btn-disabled');
+    } else {
+      startBtn.disabled = false;
+      startBtn.classList.remove('btn-disabled');
+      userSelectedDate = selectedDate;
+    }
+    // console.log(selectedDates[0]);
+  },
+};
 
 function addLeadingZero(days, hours, minutes, seconds) {
   display.querySelector('[data-days]').textContent = String(days).padStart(
@@ -41,6 +77,7 @@ function addLeadingZero(days, hours, minutes, seconds) {
   ).padStart(2, '0');
 }
 
+flatpickr(input, options);
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -63,21 +100,3 @@ function convertMs(ms) {
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-let userSelectedDate;
-
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: new Date(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-    if (selectedDates[0] < options.defaultDate) {
-      return alert('Please choose a date in the future');
-    }
-    userSelectedDate = selectedDates[0];
-    console.log(selectedDates[0]);
-  },
-};
-
-flatpickr(input, options);
