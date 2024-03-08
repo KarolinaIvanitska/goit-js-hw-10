@@ -1,0 +1,63 @@
+.form {
+  width: 1440px;
+  height: 496px;
+  background-color: #fff;
+}
+
+.label-input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+input[type='number'] {
+  display: flex;
+  width: 360px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: 1px solid #808080;
+}
+
+fieldset {
+  width: 360px;
+  height: 64px;
+  border-radius: 4px;
+  border: 1px solid #808080;
+}
+
+.label-radio {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2e2f42;
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 24px 48px 8px 48px;
+}
+
+legend {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+input[type='radio'] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
