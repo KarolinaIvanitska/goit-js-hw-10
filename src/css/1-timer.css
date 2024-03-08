@@ -71,7 +71,7 @@
 }
 
 .button-start {
-  color: #989898;
+  color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -97,5 +97,6 @@
 }
 
 .button-start:disabled {
+  color: #989898;
   background-color: #cfcfcf;
 }
