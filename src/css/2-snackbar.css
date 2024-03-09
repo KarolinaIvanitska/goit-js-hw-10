@@ -29,6 +29,18 @@ input[type='number'] {
   border: 1px solid #808080;
 }
 
+input:hover {
+  border-color: #000;
+}
+
+input:active {
+  border-color: #4e75ff;
+}
+
+input:focus-within {
+  border-color: #4e75ff;
+}
+
 fieldset {
   width: 360px;
   height: 64px;
@@ -43,7 +55,6 @@ fieldset {
   line-height: 1.5;
   color: #2e2f42;
   display: inline-flex;
-  align-items: flex-start;
   padding: 24px 48px 8px 48px;
 }
 
@@ -56,8 +67,26 @@ legend {
   color: #2e2f42;
 }
 
-input[type='radio'] {
+button[type='submit'] {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+
   display: flex;
+  width: 360px;
+  padding: 8px 16px;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 24px;
+  border-radius: 8px;
+  background-color: #4e75ff;
+  border-style: none;
+}
+
+button[type='submit']:hover {
+  background: #6c8cff;
 }

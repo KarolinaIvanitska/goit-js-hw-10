@@ -50,13 +50,10 @@ const options = {
       });
 
       startBtn.disabled = true;
-      startBtn.classList.add('btn-disabled');
     } else {
       startBtn.disabled = false;
-      startBtn.classList.remove('btn-disabled');
       userSelectedDate = selectedDate;
     }
-    // console.log(selectedDates[0]);
   },
 };
 

@@ -14,11 +14,13 @@ function onFormSubmit(e) {
     .then(res => {
       iziToast.success({
         message: `✅ Fulfilled promise in ${delay}ms`,
+        position: 'topRight',
       });
     })
     .catch(error => {
       iziToast.error({
         message: `❌ Rejected promise in ${delay}ms`,
+        position: 'topRight',
       });
     });
 
