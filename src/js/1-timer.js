@@ -9,28 +9,9 @@ const startBtn = document.querySelector('[data-start]');
 
 startBtn.addEventListener('click', onBtnStartClick);
 
-let userDate = null;
+startBtn.disabled = true;
+
 let userSelectedDate;
-
-function onBtnStartClick() {
-  startBtn.disabled = true;
-
-  input.disabled = true;
-
-  userDate = setInterval(() => {
-    const diff = userSelectedDate - Date.now();
-
-    if (diff < 0) {
-      clearInterval(idTimer);
-      input.disabled = false;
-
-      return;
-    }
-
-    const { days, hours, minutes, seconds } = convertMs(diff);
-    addLeadingZero(days, hours, minutes, seconds);
-  }, 1000);
-}
 
 const options = {
   enableTime: true,
@@ -56,6 +37,28 @@ const options = {
 };
 
 flatpickr(input, options);
+
+let idTimer = null;
+
+function onBtnStartClick() {
+  startBtn.disabled = true;
+
+  input.disabled = true;
+
+  idTimer = setInterval(() => {
+    const diff = userSelectedDate - Date.now();
+
+    if (diff < 0) {
+      clearInterval(idTimer);
+      input.disabled = false;
+
+      return;
+    }
+
+    const { days, hours, minutes, seconds } = convertMs(diff);
+    addLeadingZero(days, hours, minutes, seconds);
+  }, 1000);
+}
 
 function addLeadingZero(days, hours, minutes, seconds) {
   display.querySelector('[data-days]').textContent = String(days).padStart(
