@@ -74,7 +74,6 @@ function addLeadingZero(days, hours, minutes, seconds) {
   ).padStart(2, '0');
 }
 
-flatpickr(input, options);
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
