@@ -7,55 +7,55 @@ const input = document.querySelector('input#datetime-picker');
 const display = document.querySelector('.timer');
 const startBtn = document.querySelector('[data-start]');
 
-startBtn.addEventListener('click', onClick);
+startBtn.addEventListener('click', onBtnStartClick);
 
-let userDate;
+let userDate = null;
+let userSelectedDate;
 
-function onClick() {
+function onBtnStartClick() {
   startBtn.disabled = true;
+
   input.disabled = true;
 
-  userDate = new Date(input.value).getTime();
-  const intervalId = setInterval(() => {
-    const currentDate = Date.now();
-    const diff = userDate - currentDate;
-    if (diff <= 0) {
-      clearInterval(intervalId);
-      startBtn.disabled = false;
+  userDate = setInterval(() => {
+    const diff = userSelectedDate - Date.now();
+
+    if (diff < 0) {
+      clearInterval(idTimer);
+      input.disabled = false;
 
       return;
     }
+
     const { days, hours, minutes, seconds } = convertMs(diff);
     addLeadingZero(days, hours, minutes, seconds);
   }, 1000);
 }
 
-let userSelectedDate;
-
 const options = {
   enableTime: true,
   time_24hr: true,
-  defaultDate: new Date(),
+  defaultDate: Date.now(),
   minuteIncrement: 1,
-
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
 
-    if (selectedDate < options.defaultDate) {
+    if (selectedDate < Date.now()) {
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
         position: 'topRight',
         timeout: 3000,
       });
-
       startBtn.disabled = true;
-    } else {
-      startBtn.disabled = false;
-      userSelectedDate = selectedDate;
+      return;
     }
+    startBtn.disabled = false;
+    userSelectedDate = selectedDate;
   },
 };
+
+flatpickr(input, options);
 
 function addLeadingZero(days, hours, minutes, seconds) {
   display.querySelector('[data-days]').textContent = String(days).padStart(
